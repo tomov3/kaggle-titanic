@@ -1,0 +1,8 @@
+*.swp
+*.pyc
+__pycache__
+*.log
+*.csv
+input/
+.ipynb_checkpoints
+.python-version
