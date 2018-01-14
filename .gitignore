@@ -4,5 +4,6 @@ __pycache__
 *.log
 *.csv
 input/
+result/
 .ipynb_checkpoints
 .python-version

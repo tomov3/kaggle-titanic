@@ -4,14 +4,14 @@ import warnings
 warnings.filterwarnings('ignore')
 
 def clean_data(data):
-    data=pd.read_csv('../input/train.csv')
+    #data=pd.read_csv('../input/train.csv')
 
     data['Initial']=0
     for i in data:
         data['Initial']=data.Name.str.extract('([A-Za-z]+)\.') #lets extract the Salutations
 
-    data['Initial'].replace(['Mlle','Mme','Ms','Dr','Major','Lady','Countess','Jonkheer','Col','Rev','Capt','Sir','Don'],
-                            ['Miss','Miss','Miss','Mr','Mr','Mrs','Mrs','Other','Other','Other','Mr','Mr','Mr'],
+    data['Initial'].replace(['Mlle','Mme','Ms','Dr','Major','Lady','Countess','Jonkheer','Col','Rev','Capt','Sir','Don', 'Dona'],
+                            ['Miss','Miss','Miss','Mr','Mr','Mrs','Mrs','Other','Other','Other','Mr','Mr','Mr','Mrs'],
                             inplace=True)
 
     ## Assigning the NaN Values with the Ceil values of the mean ages
@@ -48,6 +48,6 @@ def clean_data(data):
     data['Embarked'].replace(['S','C','Q'],[0,1,2],inplace=True)
     data['Initial'].replace(['Mr','Mrs','Miss','Master','Other'],[0,1,2,3,4],inplace=True)
 
-    data.drop(['Name','Age','Ticket','Fare','Cabin','Fare_Range','PassengerId'],axis=1,inplace=True)
+    data.drop(['Name','Age','Ticket','Fare','Cabin','Fare_Range'],axis=1,inplace=True)
 
     return data
