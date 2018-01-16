@@ -143,6 +143,6 @@ test_data = test.drop(['PassengerId'], axis=1)
 #y_pred = model.predict(test_data)
 y_pred = gd.predict(test_data)
 
-FILENAME = "../input/adaboost.csv"
+FILENAME = "../result/adaboost.csv"
 sub = pd.DataFrame({'PassengerId' : PassengerId, 'Survived' : y_pred})
 sub.to_csv(FILENAME, index=False)
