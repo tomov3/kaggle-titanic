@@ -29,12 +29,11 @@ def clean_data(data):
     data.loc[(data['Age']>32)&(data['Age']<=48),'Age_band']=2
     data.loc[(data['Age']>48)&(data['Age']<=64),'Age_band']=3
     data.loc[data['Age']>64,'Age_band']=4
-    data.head(2)
 
-    data['Family_Size']=0
-    data['Family_Size']=data['Parch']+data['SibSp']#family size
+    data['Family_Size']=1
+    data['Family_Size']=data['Parch']+data['SibSp']+1#family size
     data['Alone']=0
-    data.loc[data.Family_Size==0,'Alone']=1#Alone
+    data.loc[data.Family_Size==1,'Alone']=1#Alone
 
     data['Fare_Range']=pd.qcut(data['Fare'],4)
 
@@ -47,6 +46,8 @@ def clean_data(data):
     data['Sex'].replace(['male','female'],[0,1],inplace=True)
     data['Embarked'].replace(['S','C','Q'],[0,1,2],inplace=True)
     data['Initial'].replace(['Mr','Mrs','Miss','Master','Other'],[0,1,2,3,4],inplace=True)
+
+    data['Cabin_Bool'] = data['Cabin'].notnull().astype('int')
 
     data.drop(['Name','Age','Ticket','Fare','Cabin','Fare_Range'],axis=1,inplace=True)
 
